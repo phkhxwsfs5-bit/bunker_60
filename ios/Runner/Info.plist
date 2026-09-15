@@ -7,7 +7,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Bunker 60</string>
+		<string>Bunker 06</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -80,3 +80,4 @@
 		<string>Size daha uygun reklamlar g&ouml;sterebilmemiz i&ccedil;in takip izni gereklidir.</string>
 	</dict>
 </plist>
+
