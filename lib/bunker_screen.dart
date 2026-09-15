@@ -5322,16 +5322,11 @@ Loc.get("guide_header"),
                                 _buildLangBtn('TR', Loc.currentLang == 'tr', () {
 
 
-                                  setState(() { Loc.setLanguage('tr').then((_){ 
-
-
+                                  Loc.setLanguage('tr').then((_) {
+                                      if (mounted) setState(() {});
                                       Navigator.pop(dialogContext);
-
-
                                       _showSettingsDialog(context); 
-
-
-                                  }); });
+                                  });
 
 
                                 }),
@@ -5343,16 +5338,11 @@ Loc.get("guide_header"),
                                 _buildLangBtn('EN', Loc.currentLang == 'en', () {
 
 
-                                  setState(() { Loc.setLanguage('en').then((_){ 
-
-
+                                  Loc.setLanguage('en').then((_) {
+                                      if (mounted) setState(() {});
                                       Navigator.pop(dialogContext);
-
-
                                       _showSettingsDialog(context);
-
-
-                                  }); });
+                                  });
 
 
                                 }),
