@@ -73,11 +73,11 @@
 		<key>GADApplicationIdentifier</key>
 		<string>ca-app-pub-3940256099942544~1458002511</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>Haritada konumunuzu gösterebilmemiz için konum iznine ihtiyacýmýz var.</string>
+		<string>Haritada konumunuzu gosterebilmemiz icin konum iznine ihtiyacimiz var.</string>
 		<key>NSLocationAlwaysUsageDescription</key>
-		<string>Haritada konumunuzu gösterebilmemiz için konum iznine ihtiyacýmýz var.</string>
+		<string>Haritada konumunuzu gosterebilmemiz icin konum iznine ihtiyacimiz var.</string>
 		<key>NSUserTrackingUsageDescription</key>
-		<string>Size daha uygun reklamlar g&ouml;sterebilmemiz i&ccedil;in takip izni gereklidir.</string>
+		<string>Size daha uygun reklamlar gosterebilmemiz icin takip izni gereklidir.</string>
 	</dict>
 </plist>
 
