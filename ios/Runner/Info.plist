@@ -76,6 +76,8 @@
 		<string>Haritada konumunuzu gosterebilmemiz icin konum iznine ihtiyacimiz var.</string>
 		<key>NSLocationAlwaysUsageDescription</key>
 		<string>Haritada konumunuzu gosterebilmemiz icin konum iznine ihtiyacimiz var.</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>Haritada konumunuzu gosterebilmemiz icin konum iznine ihtiyacimiz var.</string>
 		<key>NSUserTrackingUsageDescription</key>
 		<string>Size daha uygun reklamlar gosterebilmemiz icin takip izni gereklidir.</string>
 	</dict>
