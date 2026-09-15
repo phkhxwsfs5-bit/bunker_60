@@ -5187,7 +5187,7 @@ Loc.get("guide_header"),
         return StatefulBuilder(
 
 
-          builder: (context, setState) {
+          builder: (context, setDialogState) {
 
 
             return Dialog(
@@ -5375,7 +5375,7 @@ Loc.get("guide_header"),
                           onChanged: (val) {
 
 
-                            setState(() {
+                            setDialogState(() {
 
 
                               AudioManager().setBgmVolume(val);
@@ -5405,7 +5405,7 @@ Loc.get("guide_header"),
                           onChanged: (val) {
 
 
-                            setState(() {
+                            setDialogState(() {
 
 
                               AudioManager().setSfxVolume(val);
