@@ -1,3 +1,4 @@
+import 'localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -101,7 +102,7 @@ class _StartScreenState extends State<StartScreen> {
                                 const CircularProgressIndicator(color: Colors.lightBlueAccent),
                                 const SizedBox(height: 20),
                                 Text(
-                                  gameState.loadingMessage.isEmpty ? "Lütfen Bekleyin..." : gameState.loadingMessage,
+                                  gameState.loadingMessage.isEmpty ? Loc.get("loading_please_wait") : gameState.loadingMessage,
                                   style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
                                 ),
@@ -111,8 +112,7 @@ class _StartScreenState extends State<StartScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const SizedBox(height: 10),
-                                const Text(
-                                  "BUNKER 06",
+                                Text(Loc.get("app_name"),
                                   style: TextStyle(
                                     color: Colors.white, 
                                     fontSize: 36, 
@@ -121,16 +121,15 @@ class _StartScreenState extends State<StartScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 6),
-                                const Text(
-                                  "Hayatta kalmak için ne kadar ileri gidebilirsin?",
+                                Text(Loc.get("subtitle_tagline"),
                                   style: TextStyle(color: Colors.white70, fontSize: 14),
                                 ),
                                 const SizedBox(height: 25), 
                                 
                                 if (hasSave) ...[
                                   _buildStartButton(
-                                    title: "DEVAM ET",
-                                    subtitle: "Sığınağa geri dön ve kaldığın yerden devam et.",
+                                    title: Loc.get("btn_continue"),
+                                    subtitle: Loc.get("btn_continue_sub"),
                                     imagePath: 'assets/icon_play.png', 
                                     color: Colors.greenAccent,
                                     onTap: continueGame,
@@ -139,8 +138,8 @@ class _StartScreenState extends State<StartScreen> {
                                 ],
                                 
                                 _buildStartButton(
-                                  title: "YENİ OYUN: GERÇEKÇİ OYNANIŞ",
-                                  subtitle: "Tam konumunu haritalandırır.", 
+                                  title: Loc.get("btn_new_real"),
+                                  subtitle: Loc.get("btn_new_real_sub"), 
                                   imagePath: 'assets/icon_gps.png', 
                                   color: Colors.lightBlueAccent,
                                   onTap: () => startNewGame(true),
@@ -148,8 +147,8 @@ class _StartScreenState extends State<StartScreen> {
                                 const SizedBox(height: 12),
                                 
                                 _buildStartButton(
-                                  title: "YENİ OYUN: HIZLI OYNANIŞ",
-                                  subtitle: "İzin gerektirmez. Tahmini harita üzerinden ilerler.",
+                                  title: Loc.get("btn_new_fast"),
+                                  subtitle: Loc.get("btn_new_fast_sub"),
                                   imagePath: 'assets/icon_lightning.png', 
                                   color: Colors.amber,
                                   onTap: () => startNewGame(false),

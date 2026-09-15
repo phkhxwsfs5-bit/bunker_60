@@ -6,7 +6,11 @@ import 'package:purchases_flutter/purchases_flutter.dart'; // EKLENDİ
 import 'game_state.dart';
 import 'splash_screen.dart';
 
+import 'localization.dart';
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Loc.loadLanguage();
   WidgetsFlutterBinding.ensureInitialized();
   
   // AdMob SDK Başlatma
