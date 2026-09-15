@@ -4060,10 +4060,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     const SizedBox(height: 8),
 
 
-                    const Text(
-
-
-                      "AMATÖR RADYO K6JFD",
+                    Text(
+Loc.get("radio_title"),
 
 
                       style: TextStyle(
@@ -4090,10 +4088,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     const SizedBox(height: 8),
 
 
-                    const Text(
-
-
-                      "Dış dünyadan bir ses duymak veya sadece biraz müzik dinlemek, sığınaktaki herkesin ruh halini etkileyebilir. Günde sadece bir kez kullanabiliriz.",
+                    Text(
+Loc.get("radio_desc"),
 
 
                       style: TextStyle(color: Colors.white70, fontSize: 12, height: 1.4),
@@ -4114,10 +4110,10 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       imagePath: 'assets/icon_radar.png',
 
 
-                      title: "Sinyal Tara",
+                      title: Loc.get("radio_scan"),
 
 
-                      subtitle: "Askeri veya sivil yayınları ara.",
+                      subtitle: Loc.get("radio_scan_sub"),
 
 
                       enabled: !gameState.hasUsedRadioToday,
@@ -4150,10 +4146,10 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       imagePath: 'assets/icon_music.png', 
 
 
-                      title: "Müzik Dinle",
+                      title: Loc.get("radio_music"),
 
 
-                      subtitle: "Eski şarkılar moralleri yükseltir.",
+                      subtitle: Loc.get("radio_music_sub"),
 
 
                       enabled: !gameState.hasUsedRadioToday,
@@ -4324,10 +4320,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     const SizedBox(height: 8),
 
 
-                    const Text(
-
-
-                      "KARABORSA / DESTEK",
+                    Text(
+Loc.get("store_header"),
 
 
                       style: TextStyle(
@@ -4357,10 +4351,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     const SizedBox(height: 8),
 
 
-                    const Text(
-
-
-                      "Dışarıdan veya havadan gelen destek paketleriyle sığınaktaki ömrünü uzat. Telsizle sipariş veriyoruz.",
+                    Text(
+Loc.get("store_header_desc"),
 
 
                       style: TextStyle(color: Colors.white70, fontSize: 12, height: 1.4),
@@ -4399,16 +4391,16 @@ class _BunkerScreenState extends State<BunkerScreen> {
                           imagePath: 'assets/icon_radio.png', 
 
 
-                          title: "Acil Durum Sinyali",
+                          title: Loc.get("store_ad_title"),
 
 
                           subtitle: canUseAd 
 
 
-                              ? "Kısa bir video izle. Ödül: +1 Su, +1 Çorba." 
+                              ? Loc.get("store_ad_sub") 
 
 
-                              : "Sinyal şarj oluyor. $daysLeft gün sonra tekrar kullanılabilir.",
+                              : Loc.get("store_ad_cooldown", {"days": daysLeft.toString()}),
 
 
                           enabled: canUseAd,
@@ -4435,7 +4427,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                               onReward: () {
 
 
-                                _showModernAlert(context, "SİNYAL ALINDI", "Destek ulaştı! +1 Su, +1 Çorba kazanıldı.", Colors.greenAccent, Icons.inventory_2);
+                                _showModernAlert(context, Loc.get("alert_signal_ok"), Loc.get("alert_signal_ok_msg"), Colors.greenAccent, Icons.inventory_2);
 
 
                               },
@@ -4444,7 +4436,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                               onFailed: () {
 
 
-                                _showModernAlert(context, "SİNYAL KOPTU", "Bağlantı kurulamadı veya reklam yüklenemedi. Lütfen internetinizi kontrol edin.", Colors.redAccent, Icons.signal_wifi_off);
+                                _showModernAlert(context, Loc.get("alert_signal_fail"), Loc.get("alert_signal_fail_msg"), Colors.redAccent, Icons.signal_wifi_off);
 
 
                               }
@@ -4474,10 +4466,10 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       imagePath: 'assets/icon_store.png',
 
 
-                      title: "Hayatta Kalma Paketi (\$1)",
+                      title: Loc.get("store_pack_title"),
 
 
-                      subtitle: "+5 Su, +5 Çorba, +2 İlk Yardım, +2 Cephane.",
+                      subtitle: Loc.get("store_pack_sub"),
 
 
                       enabled: true,
@@ -4504,7 +4496,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                           if (context.mounted) {
 
 
-                            _showModernAlert(context, "KARGO ULAŞTI", "Paket Satın Alındı! Tüm kaynaklar sığınağa eklendi.", Colors.greenAccent, Icons.check_circle);
+                            _showModernAlert(context, Loc.get("alert_cargo_ok"), Loc.get("alert_cargo_ok_msg"), Colors.greenAccent, Icons.check_circle);
 
 
                           }
@@ -4540,16 +4532,16 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       imagePath: 'assets/icon_elite.png',
 
 
-                      title: gameState.isAdFree ? "Elit Sığınak (Aktif)" : "Elit Sürüm (\$5)",
+                      title: gameState.isAdFree ? Loc.get("store_elite_active") : Loc.get("store_elite_title"),
 
 
                       subtitle: gameState.isAdFree
 
 
-                          ? "Zorunlu reklamlar kaldırıldı."
+                          ? Loc.get("store_elite_active_sub")
 
 
-                          : "Zorunlu reklamları kalıcı olarak kaldır. Bonus: +1 Alet.",
+                          : Loc.get("store_elite_sub"),
 
 
                       enabled: !gameState.isAdFree,
@@ -4588,7 +4580,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                             if (context.mounted) {
 
 
-                              _showModernAlert(context, "ELİT SÜRÜM AKTİF", "Tebrikler! Reklamlar kaldırıldı ve +1 Alet eklendi.", Colors.greenAccent, Icons.star);
+                              _showModernAlert(context, Loc.get("alert_elite_ok"), Loc.get("alert_elite_ok_msg"), Colors.greenAccent, Icons.star);
 
 
                             }
@@ -4792,10 +4784,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         const SizedBox(width: 12),
 
 
-                        const Text(
-
-
-                          "HAYATTA KALMA REHBERİ",
+                        Text(
+Loc.get("guide_header"),
 
 
                           style: TextStyle(
@@ -4864,7 +4854,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                               color: Colors.amber,
 
 
-                              title: "1. TEMEL AMACINIZ",
+                              title: Loc.get("guide_s1_title"),
 
 
                               content: "Sığınakta ailenizle birlikte olabildiğince uzun süre hayatta kalmak. Su ve Çorba stoklarınızı akıllıca yönetin. Günleri atlatmak için sağ alttaki 'Günü Bitir' butonunu kullanın. Açlık ve susuzluk karakterleri hastalandırır, yalnızlık delirtir. Herkes ölürse oyun biter.",
@@ -4882,7 +4872,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                               color: Colors.greenAccent,
 
 
-                              title: "2. KEŞİF SİSTEMİ (GERÇEK DÜNYA HARİTASI)",
+                              title: Loc.get("guide_s2_title"),
 
 
                               content: "Oyun, cihazınızın konumunu kullanarak etrafınızdaki gerçek dünyayı haritalandırır. 'Keşfe Çık' diyerek karakterlerinizi Eczane, Market veya Nalbur gibi yakınınızdaki noktalara erzak toplamaya gönderebilirsiniz. Dışarıdaki tehlikeli olaylara ve yağmacılara karşı dikkatli olun!",
@@ -5713,7 +5703,7 @@ class _DayChangeAnimationState extends State<DayChangeAnimation> with SingleTick
         Text(
 
 
-          "GÜN ${widget.day} BİTTİ",
+          Loc.get("day_ended", {"day": widget.day.toString()}),
 
 
           style: const TextStyle(
