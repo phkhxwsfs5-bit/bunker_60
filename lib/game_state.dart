@@ -131,7 +131,7 @@ class GameState extends ChangeNotifier {
   late GameEvent currentEvent;
 
   String get dailyLog {
-    if (day == 1 && (currentEvent.description == Loc.get("evt_ilkgeceokzorduy") || currentEvent.description == "The first night was very hard. We heard strange scratching noises from above. The light bulb keeps flickering." || currentEvent.description == "İlk gece çok zordu. Yukarıdan garip kazıma sesleri duyduk. Ampul sürekli titriyor." || currentEvent.description == "İlk gece çok zordu. Yukarıdan garip tıkırtılar duyduk. Ampul sürekli göz kırpıyor.")) {
+    if (currentDay == 1 && (currentEvent.description == Loc.get("evt_ilkgeceokzorduy") || currentEvent.description == "The first night was very hard. We heard strange scratching noises from above. The light bulb keeps flickering." || currentEvent.description == "İlk gece çok zordu. Yukarıdan garip kazıma sesleri duyduk. Ampul sürekli titriyor." || currentEvent.description == "İlk gece çok zordu. Yukarıdan garip tıkırtılar duyduk. Ampul sürekli göz kırpıyor.")) {
         return Loc.get("evt_ilkgeceokzorduy");
     }
     return currentEvent.description;
