@@ -1,4 +1,4 @@
-import 'localization.dart';
+﻿import 'localization.dart';
 import 'dart:io';
 import 'dart:math';
 
@@ -22,7 +22,7 @@ import 'audio_manager.dart';
 
 class GameState extends ChangeNotifier {
 
-  // --- REKLAM DEĞİŞKENLERİ ---
+  // --- REKLAM DEÄÄ°ÅKENLERÄ° ---
 
   RewardedAd? _rewardedAd;
 
@@ -30,7 +30,7 @@ class GameState extends ChangeNotifier {
 
   
 
-  // Canlıya Çıkarken Kullanılacak GERÇEK AdMob ID'leri
+  // CanlÄ±ya Ã‡Ä±karken KullanÄ±lacak GERÃ‡EK AdMob ID'leri
 
   final String _testRewardedId = Platform.isIOS ? 'ca-app-pub-3711837388078625/2088644651' : 'ca-app-pub-3711837388078625/8361549166';
 
@@ -122,7 +122,7 @@ class GameState extends ChangeNotifier {
 
     Character(name: "Anne", imagePrefix: "mom"),
 
-    Character(name: "Çocuk", imagePrefix: "kid"),
+    Character(name: "Ã‡ocuk", imagePrefix: "kid"),
 
   ];
 
@@ -131,7 +131,7 @@ class GameState extends ChangeNotifier {
   late GameEvent currentEvent;
 
   String get dailyLog {
-    if (currentDay == 1 && (currentEvent.description == Loc.get("evt_ilkgeceokzorduy") || currentEvent.description == "The first night was very hard. We heard strange scratching noises from above. The light bulb keeps flickering." || currentEvent.description == "İlk gece çok zordu. Yukarıdan garip kazıma sesleri duyduk. Ampul sürekli titriyor." || currentEvent.description == "İlk gece çok zordu. Yukarıdan garip tıkırtılar duyduk. Ampul sürekli göz kırpıyor.")) {
+    if (currentDay == 1 && (currentEvent.description == Loc.get("evt_ilkgeceokzorduy") || currentEvent.description == "The first night was very hard. We heard strange scratching noises from above. The light bulb keeps flickering." || currentEvent.description == "Ä°lk gece Ã§ok zordu. YukarÄ±dan garip kazÄ±ma sesleri duyduk. Ampul sÃ¼rekli titriyor." || currentEvent.description == "Ä°lk gece Ã§ok zordu. YukarÄ±dan garip tÄ±kÄ±rtÄ±lar duyduk. Ampul sÃ¼rekli gÃ¶z kÄ±rpÄ±yor.")) {
         return Loc.get("evt_ilkgeceokzorduy");
     }
     return currentEvent.description;
@@ -153,43 +153,43 @@ class GameState extends ChangeNotifier {
 
     "Baba": [
 
-      {"name": "Tamirci", "desc": "Alet kullanımlarında %30 ihtimalle alet kırılmaz."},
+      {"name": "Tamirci", "desc": "Alet kullanÄ±mlarÄ±nda %30 ihtimalle alet kÄ±rÄ±lmaz."},
 
-      {"name": "Demir Mide", "desc": "Açlığa karşı daha dirençlidir, yavaş acıkır."},
+      {"name": "Demir Mide", "desc": "AÃ§lÄ±ÄŸa karÅŸÄ± daha direnÃ§lidir, yavaÅŸ acÄ±kÄ±r."},
 
-      {"name": "Koruyucu", "desc": "Keşiflerde daha fazla eşya bulur ama yaralanma riski artar."},
+      {"name": "Koruyucu", "desc": "KeÅŸiflerde daha fazla eÅŸya bulur ama yaralanma riski artar."},
 
-      {"name": "İri Yarı", "desc": "Morali çok zor düşer ama daha çabuk susar."},
+      {"name": "Ä°ri YarÄ±", "desc": "Morali Ã§ok zor dÃ¼ÅŸer ama daha Ã§abuk susar."},
 
-      {"name": "Soğukkanlı", "desc": "Gece yaşanan kötü olaylardan (hırsız, ses) etkilenmez."},
+      {"name": "SoÄŸukkanlÄ±", "desc": "Gece yaÅŸanan kÃ¶tÃ¼ olaylardan (hÄ±rsÄ±z, ses) etkilenmez."},
 
     ],
 
     "Anne": [
 
-      {"name": "Pratik", "desc": "Dışarıdaki keşif görevlerinden 1 gün erken döner."},
+      {"name": "Pratik", "desc": "DÄ±ÅŸarÄ±daki keÅŸif gÃ¶revlerinden 1 gÃ¼n erken dÃ¶ner."},
 
-      {"name": "Tutumlu", "desc": "Birine çorba içirdiğinde %25 ihtimalle çorba eksilmez."},
+      {"name": "Tutumlu", "desc": "Birine Ã§orba iÃ§irdiÄŸinde %25 ihtimalle Ã§orba eksilmez."},
 
-      {"name": "Şifacı", "desc": "Bazen hastalandığında ilaçsız kendiliğinden iyileşebilir."},
+      {"name": "ÅifacÄ±", "desc": "Bazen hastalandÄ±ÄŸÄ±nda ilaÃ§sÄ±z kendiliÄŸinden iyileÅŸebilir."},
 
-      {"name": "Gözlemci", "desc": "Radyo aramalarında askeri frekans bulma şansı daha yüksektir."},
+      {"name": "GÃ¶zlemci", "desc": "Radyo aramalarÄ±nda askeri frekans bulma ÅŸansÄ± daha yÃ¼ksektir."},
 
-      {"name": "Dirençli", "desc": "Susuzluğa karşı olağanüstü dayanıklıdır."},
+      {"name": "DirenÃ§li", "desc": "SusuzluÄŸa karÅŸÄ± olaÄŸanÃ¼stÃ¼ dayanÄ±klÄ±dÄ±r."},
 
     ],
 
-    "Çocuk": [
+    "Ã‡ocuk": [
 
-      {"name": "Çevik", "desc": "Keşif görevlerinde asla yaralanmaz."},
+      {"name": "Ã‡evik", "desc": "KeÅŸif gÃ¶revlerinde asla yaralanmaz."},
 
-      {"name": "Neşeli", "desc": "Onunla sohbet etmek tüm ailenin moralini artırır."},
+      {"name": "NeÅŸeli", "desc": "Onunla sohbet etmek tÃ¼m ailenin moralini artÄ±rÄ±r."},
 
-      {"name": "Ufaklık", "desc": "Su ve çorbayı çok daha yavaş tüketir."},
+      {"name": "UfaklÄ±k", "desc": "Su ve Ã§orbayÄ± Ã§ok daha yavaÅŸ tÃ¼ketir."},
 
-      {"name": "Şanslı", "desc": "Sığınağa saldıran böcek, hırsız gibi belaları kazara savuşturabilir."},
+      {"name": "ÅanslÄ±", "desc": "SÄ±ÄŸÄ±naÄŸa saldÄ±ran bÃ¶cek, hÄ±rsÄ±z gibi belalarÄ± kazara savuÅŸturabilir."},
 
-      {"name": "Gözü Açık", "desc": "Keşiflerde mutlaka gizli bir ekstra eşya bulur."},
+      {"name": "GÃ¶zÃ¼ AÃ§Ä±k", "desc": "KeÅŸiflerde mutlaka gizli bir ekstra eÅŸya bulur."},
 
     ]
 
@@ -281,7 +281,7 @@ class GameState extends ChangeNotifier {
 
     currentTraits["Anne"] = _allTraits["Anne"]![random.nextInt(5)];
 
-    currentTraits["Çocuk"] = _allTraits["Çocuk"]![random.nextInt(5)];
+    currentTraits["Ã‡ocuk"] = _allTraits["Ã‡ocuk"]![random.nextInt(5)];
 
   }
 
@@ -437,7 +437,7 @@ class GameState extends ChangeNotifier {
 
           currentEvent = GameEvent(
 
-            description: "${currentEvent.description}\n\n$exploringCharacter hala dışarıda, dönmesini bekliyoruz.",
+            description: "${currentEvent.description}\n\n$exploringCharacter hala dÄ±ÅŸarÄ±da, dÃ¶nmesini bekliyoruz.",
 
             choices: currentEvent.choices,
 
@@ -457,7 +457,7 @@ class GameState extends ChangeNotifier {
 
     if (diedTonight.isNotEmpty) {
 
-      String deathMsg = "KÖTÜ HABER! Bu sabah uyandığımızda ${diedTonight.join(' ve ')} nefes almıyordu. Açlık ve susuzluğa daha fazla dayanamadı...\n\n";
+      String deathMsg = "KÃ–TÃœ HABER! Bu sabah uyandÄ±ÄŸÄ±mÄ±zda ${diedTonight.join(' ve ')} nefes almÄ±yordu. AÃ§lÄ±k ve susuzluÄŸa daha fazla dayanamadÄ±...\n\n";
 
       currentEvent = GameEvent(
 
@@ -491,7 +491,7 @@ class GameState extends ChangeNotifier {
 
       currentEvent = GameEvent(
 
-        description: "TELSİZ: $exploringCharacter terk edilmiş bir dükkanda kilitli bir çelik kasa buldu. Açmayı denesin mi?",
+        description: "TELSÄ°Z: $exploringCharacter terk edilmiÅŸ bir dÃ¼kkanda kilitli bir Ã§elik kasa buldu. AÃ§mayÄ± denesin mi?",
 
         choices: [
 
@@ -517,7 +517,7 @@ class GameState extends ChangeNotifier {
 
               waterCount += 2; soupCount += 2;
 
-              currentEvent = GameEvent(description: "Kasa açıldı! İçinden 2 Su ve 2 Çorba çıktı. $exploringCharacter yola devam ediyor.", choices: []);
+              currentEvent = GameEvent(description: "Kasa aÃ§Ä±ldÄ±! Ä°Ã§inden 2 Su ve 2 Ã‡orba Ã§Ä±ktÄ±. $exploringCharacter yola devam ediyor.", choices: []);
 
               notifyListeners(); saveGame();
 
@@ -533,7 +533,7 @@ class GameState extends ChangeNotifier {
 
             onSelect: () {
 
-              currentEvent = GameEvent(description: "Riski göze almadık. $exploringCharacter sessizce keşfe devam ediyor.", choices: []);
+              currentEvent = GameEvent(description: "Riski gÃ¶ze almadÄ±k. $exploringCharacter sessizce keÅŸfe devam ediyor.", choices: []);
 
               notifyListeners(); saveGame();
 
@@ -549,7 +549,7 @@ class GameState extends ChangeNotifier {
 
       currentEvent = GameEvent(
 
-        description: "TELSİZ: $exploringCharacter yolda yaralı, çaresiz bir yabancıya rastladı. Telsizden 'Ona yardım edeyim mi?' diye soruyor.",
+        description: "TELSÄ°Z: $exploringCharacter yolda yaralÄ±, Ã§aresiz bir yabancÄ±ya rastladÄ±. Telsizden 'Ona yardÄ±m edeyim mi?' diye soruyor.",
 
         choices: [
 
@@ -611,7 +611,7 @@ class GameState extends ChangeNotifier {
 
       currentEvent = GameEvent(
 
-        description: "TELSİZ: $exploringCharacter dost canlısı görünen bir hayatta kalanla karşılaştı. 2 Çorba karşılığında 1 İlk Yardım Kiti takası teklif ediyor.",
+        description: "TELSÄ°Z: $exploringCharacter dost canlÄ±sÄ± gÃ¶rÃ¼nen bir hayatta kalanla karÅŸÄ±laÅŸtÄ±. 2 Ã‡orba karÅŸÄ±lÄ±ÄŸÄ±nda 1 Ä°lk YardÄ±m Kiti takasÄ± teklif ediyor.",
 
         choices: [
 
@@ -675,15 +675,15 @@ class GameState extends ChangeNotifier {
 
     if (trait == "Demir Mide" && char.hungerLevel > 0 && rand.nextInt(100) < 15) char.hungerLevel--;
 
-    if (trait == "İri Yarı" && rand.nextInt(100) < 30) char.thirstLevel++;
+    if (trait == "Ä°ri YarÄ±" && rand.nextInt(100) < 30) char.thirstLevel++;
 
-    if (trait == "Dirençli" && char.thirstLevel > 0 && rand.nextInt(100) < 15) char.thirstLevel--;
+    if (trait == "DirenÃ§li" && char.thirstLevel > 0 && rand.nextInt(100) < 15) char.thirstLevel--;
 
-    if (trait == "Şifacı" && char.status == 'sick' && rand.nextInt(100) < 10) char.status = 'normal';
+    if (trait == "ÅifacÄ±" && char.status == 'sick' && rand.nextInt(100) < 10) char.status = 'normal';
 
 
 
-    if (trait == "Ufaklık") {
+    if (trait == "UfaklÄ±k") {
 
       if (rand.nextInt(100) < 15 && char.hungerLevel > 0) char.hungerLevel--;
 
@@ -731,7 +731,7 @@ class GameState extends ChangeNotifier {
 
       
 
-      if (getTraitName("Anne") == "Gözlemci" && characters[1].isAlive && !characters[1].isExploring) chance += 20; 
+      if (getTraitName("Anne") == "GÃ¶zlemci" && characters[1].isAlive && !characters[1].isExploring) chance += 20; 
 
 
 
@@ -1017,7 +1017,7 @@ class GameState extends ChangeNotifier {
 
             onSelect: () {
 
-              if (getTraitName("Çocuk") == "Şanslı" && characters[2].isAlive && !characters[2].isExploring && Random().nextBool()) {
+              if (getTraitName("Ã‡ocuk") == "ÅanslÄ±" && characters[2].isAlive && !characters[2].isExploring && Random().nextBool()) {
 
                  currentEvent = GameEvent(description: Loc.get("evt_bceklerkonserve"), choices: []);
 
@@ -1275,7 +1275,7 @@ class GameState extends ChangeNotifier {
 
       return GameEvent(
 
-        description: "$currentDay. Gün. Sığınakta sessiz bir bekleyiş sürüyor. Kaynakları idareli kullanmalıyız.", 
+        description: "$currentDay. GÃ¼n. SÄ±ÄŸÄ±nakta sessiz bir bekleyiÅŸ sÃ¼rÃ¼yor. KaynaklarÄ± idareli kullanmalÄ±yÄ±z.", 
 
         choices: []
 
@@ -1385,7 +1385,7 @@ class GameState extends ChangeNotifier {
 
       
 
-      if (char.name == "Çocuk" && getTraitName("Çocuk") == "Neşeli") {
+      if (char.name == "Ã‡ocuk" && getTraitName("Ã‡ocuk") == "NeÅŸeli") {
 
         for (var c in characters) {
 
@@ -1497,11 +1497,11 @@ class GameState extends ChangeNotifier {
 
     
 
-    bool isAgile = (exploringCharacter == "Çocuk" && getTraitName("Çocuk") == "Çevik");
+    bool isAgile = (exploringCharacter == "Ã‡ocuk" && getTraitName("Ã‡ocuk") == "Ã‡evik");
 
     bool isProtective = (exploringCharacter == "Baba" && getTraitName("Baba") == "Koruyucu");
 
-    bool isScavenger = (exploringCharacter == "Çocuk" && getTraitName("Çocuk") == "Gözü Açık");
+    bool isScavenger = (exploringCharacter == "Ã‡ocuk" && getTraitName("Ã‡ocuk") == "GÃ¶zÃ¼ AÃ§Ä±k");
 
 
 
@@ -1753,7 +1753,7 @@ class GameState extends ChangeNotifier {
 
       }
 
-    } catch (e) { print("Önbellek okuma hatası: $e"); }
+    } catch (e) { print("Ã–nbellek okuma hatasÄ±: $e"); }
 
 
 
@@ -1877,7 +1877,7 @@ class GameState extends ChangeNotifier {
 
       int pharmacyCount = random.nextInt(4) + 3;
 
-      List<String> pharmacyNames = ["Şifa Eczanesi", "Merkez Eczanesi", "Sağlık Eczanesi", "Umut Eczanesi", "Hayat Eczanesi", "Güneş Eczanesi", "Halk Eczanesi", "Yeni Eczane"];
+      List<String> pharmacyNames = ["Åifa Eczanesi", "Merkez Eczanesi", "SaÄŸlÄ±k Eczanesi", "Umut Eczanesi", "Hayat Eczanesi", "GÃ¼neÅŸ Eczanesi", "Halk Eczanesi", "Yeni Eczane"];
 
       for (int i = 0; i < pharmacyCount; i++) {
 
@@ -1887,7 +1887,7 @@ class GameState extends ChangeNotifier {
 
       int marketCount = random.nextInt(4) + 4;
 
-      List<String> marketNames = ["Güven Süpermarket", "Büyük Gıda", "Kardeşler Bakkalı", "Ucuza Market", "Bereket Gıda", "Merkez Hipermarket", "Bizim Bakkal", "Köşe Market"];
+      List<String> marketNames = ["GÃ¼ven SÃ¼permarket", "BÃ¼yÃ¼k GÄ±da", "KardeÅŸler BakkalÄ±", "Ucuza Market", "Bereket GÄ±da", "Merkez Hipermarket", "Bizim Bakkal", "KÃ¶ÅŸe Market"];
 
       for (int i = 0; i < marketCount; i++) {
 
@@ -1897,7 +1897,7 @@ class GameState extends ChangeNotifier {
 
       int hardwareCount = random.nextInt(3) + 1;
 
-      List<String> hardwareNames = ["Usta Nalburiye", "Yapı Market", "Çınar Hırdavat", "Emin Yapı", "Kardeşler Nalbur"];
+      List<String> hardwareNames = ["Usta Nalburiye", "YapÄ± Market", "Ã‡Ä±nar HÄ±rdavat", "Emin YapÄ±", "KardeÅŸler Nalbur"];
 
       for (int i = 0; i < hardwareCount; i++) {
 
@@ -2019,7 +2019,7 @@ class GameState extends ChangeNotifier {
 
     toolCount = prefs.getInt('toolCount') ?? 1;
 
-    locationName = prefs.getString('locationName') ?? "Bilinmeyen Bölge";
+    locationName = prefs.getString('locationName') ?? "Bilinmeyen BÃ¶lge";
 
     isGameOver = prefs.getBool('isGameOver') ?? false;
 
@@ -2144,4 +2144,6 @@ class GameState extends ChangeNotifier {
   }
 
 }
+
+
 

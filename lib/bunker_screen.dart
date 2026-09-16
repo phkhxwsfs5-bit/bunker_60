@@ -1,4 +1,4 @@
-import 'localization.dart';
+﻿import 'localization.dart';
 
 
 import 'dart:math'; 
@@ -247,7 +247,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
         if (context.mounted) {
 
 
-          _showModernAlert(context, Loc.get("alert_title_success"), "Satın alımlarınız başarıyla geri yüklendi! Reklamlar kaldırıldı.", Colors.greenAccent, Icons.check_circle);
+          _showModernAlert(context, Loc.get("alert_title_success"), "SatÄ±n alÄ±mlarÄ±nÄ±z baÅŸarÄ±yla geri yÃ¼klendi! Reklamlar kaldÄ±rÄ±ldÄ±.", Colors.greenAccent, Icons.check_circle);
 
 
         }
@@ -259,7 +259,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
         if (context.mounted) {
 
 
-          _showModernAlert(context, "BİLGİ", "Geri yüklenecek aktif bir satın alım bulunamadı.", Colors.orangeAccent, Icons.info_outline);
+          _showModernAlert(context, "BÄ°LGÄ°", "Geri yÃ¼klenecek aktif bir satÄ±n alÄ±m bulunamadÄ±.", Colors.orangeAccent, Icons.info_outline);
 
 
         }
@@ -274,7 +274,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
       if (context.mounted) {
 
 
-        _showModernAlert(context, "BAĞLANTI HATASI", "Sunucuyla iletişim kurulamadı. İnternetinizi kontrol edin.", Colors.redAccent, Icons.error_outline);
+        _showModernAlert(context, "BAÄLANTI HATASI", "Sunucuyla iletiÅŸim kurulamadÄ±. Ä°nternetinizi kontrol edin.", Colors.redAccent, Icons.error_outline);
 
 
       }
@@ -448,13 +448,13 @@ class _BunkerScreenState extends State<BunkerScreen> {
                 children: [
 
 
-                  _buildStrokedText("SİNYAL KESİLDİ", 46, Colors.redAccent, 8.0, 4.0),
+                  _buildStrokedText("SÄ°NYAL KESÄ°LDÄ°", 46, Colors.redAccent, 8.0, 4.0),
 
 
                   const SizedBox(height: 16),
 
 
-                  _buildStrokedText("HAYATTA KALINAN GÜN", 20, Colors.white, 6.0, 2.0),
+                  _buildStrokedText("HAYATTA KALINAN GÃœN", 20, Colors.white, 6.0, 2.0),
 
 
                   _buildStrokedText("${gameState.currentDay}", 84, Colors.white, 14.0, 0.0),
@@ -517,7 +517,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     child: const Text(
 
 
-                      "ANA MENÜYE DÖN",
+                      "ANA MENÃœYE DÃ–N",
 
 
                       style: TextStyle(
@@ -613,7 +613,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                   const SizedBox(height: 16),
 
 
-                  _buildStrokedText("SIĞINAKTA GEÇEN GÜN", 20, Colors.white, 6.0, 2.0),
+                  _buildStrokedText("SIÄINAKTA GEÃ‡EN GÃœN", 20, Colors.white, 6.0, 2.0),
 
 
                   _buildStrokedText("${gameState.currentDay}", 84, Colors.white, 14.0, 0.0),
@@ -676,7 +676,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     child: const Text(
 
 
-                      "ANA MENÜYE DÖN",
+                      "ANA MENÃœYE DÃ–N",
 
 
                       style: TextStyle(
@@ -1384,7 +1384,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                               Text(
 
 
-                                char.name.toUpperCase(),
+                                Loc.get('char_${char.name}').toUpperCase(),
 
 
                                 style: const TextStyle(
@@ -1498,10 +1498,10 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       imagePath: 'assets/icon_water.png',
 
 
-                      title: "Su İçir (-1 Su)",
+                      title: Loc.get("action_water"),
 
 
-                      subtitle: "Susuzluğunu giderir.",
+                      subtitle: "SusuzluÄŸunu giderir.",
 
 
                       enabled: gameState.waterCount > 0 && char.thirstLevel > 0,
@@ -1516,7 +1516,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         gameState.feedWater(char);
 
 
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(dialogContext); // HATA DÃœZELTÄ°LDÄ°: ctx yerine dialogContext
 
 
                       },
@@ -1534,10 +1534,10 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       imagePath: 'assets/icon_soup.png',
 
 
-                      title: "Çorba Yedir (-1 Çorba)",
+                      title: Loc.get("action_soup"),
 
 
-                      subtitle: "Açlığını giderir.",
+                      subtitle: "AÃ§lÄ±ÄŸÄ±nÄ± giderir.",
 
 
                       enabled: gameState.soupCount > 0 && char.hungerLevel > 0,
@@ -1552,7 +1552,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         gameState.feedSoup(char);
 
 
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(dialogContext); // HATA DÃœZELTÄ°LDÄ°: ctx yerine dialogContext
 
 
                       },
@@ -1570,10 +1570,10 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       imagePath: 'assets/icon_medkit.png',
 
 
-                      title: "Medkit Kullan (-1 Medkit)",
+                      title: Loc.get("action_medkit"),
 
 
-                      subtitle: "Hastalığı/Yarayı iyileştirir.",
+                      subtitle: "HastalÄ±ÄŸÄ±/YarayÄ± iyileÅŸtirir.",
 
 
                       enabled: gameState.medkitCount > 0 && (char.status == 'sick' || char.status == 'injured'),
@@ -1588,7 +1588,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         gameState.healCharacter(char);
 
 
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(dialogContext); // HATA DÃœZELTÄ°LDÄ°: ctx yerine dialogContext
 
 
                       },
@@ -1606,10 +1606,10 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       imagePath: 'assets/icon_chat.png',
 
 
-                      title: "Sohbet Et",
+                      title: Loc.get("action_chat"),
 
 
-                      subtitle: "Moralini yükseltir. (Günde 1 kez)",
+                      subtitle: "Moralini yÃ¼kseltir. (GÃ¼nde 1 kez)",
 
 
                       enabled: !gameState.hasChattedToday && char.moraleLevel > 0,
@@ -1624,7 +1624,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         gameState.talkToCharacter(char);
 
 
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(dialogContext); // HATA DÃœZELTÄ°LDÄ°: ctx yerine dialogContext
 
 
                       },
@@ -1639,7 +1639,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     _buildActionButton(
 
 
-                      "Kapat",
+                      Loc.get("btn_close"),
 
 
                       Icons.close,
@@ -1654,7 +1654,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         AudioManager().playSFX('ui_click.mp3');
 
 
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(dialogContext); // HATA DÃœZELTÄ°LDÄ°: ctx yerine dialogContext
 
 
                       },
@@ -2311,13 +2311,13 @@ class _BunkerScreenState extends State<BunkerScreen> {
           _buildResourceItem("Su", 'assets/icon_water.png', "${gameState.waterCount}"),
 
 
-          _buildResourceItem("Çorba", 'assets/icon_soup.png', "${gameState.soupCount}"),
+          _buildResourceItem("Ã‡orba", 'assets/icon_soup.png', "${gameState.soupCount}"),
 
 
-          _buildResourceItem("İlk Yardım Kiti", 'assets/icon_medkit.png', "${gameState.medkitCount}"),
+          _buildResourceItem("Ä°lk YardÄ±m Kiti", 'assets/icon_medkit.png', "${gameState.medkitCount}"),
 
 
-          _buildResourceItem("Alet Çantası", 'assets/icon_tool.png', "${gameState.toolCount}"),
+          _buildResourceItem("Alet Ã‡antasÄ±", 'assets/icon_tool.png', "${gameState.toolCount}"),
 
 
           _buildResourceItem("Cephane", 'assets/icon_ammo.png', "${gameState.ammoCount}"),
@@ -3289,7 +3289,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                                 const Text(
 
 
-                                  "Keşif Görevi Planla",
+                                  "KeÅŸif GÃ¶revi Planla",
 
 
                                   style: TextStyle(
@@ -3325,7 +3325,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                           const Text(
 
 
-                            "Hedef Seçimi",
+                            "Hedef SeÃ§imi",
 
 
                             style: TextStyle(
@@ -3694,7 +3694,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                           const Text(
 
 
-                            "Gönderilecek Karakter",
+                            "GÃ¶nderilecek Karakter",
 
 
                             style: TextStyle(
@@ -3772,7 +3772,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                                       children: [
 
 
-                                        Text(character.name, style: const TextStyle(color: Colors.white)),
+                                        Text(Loc.get('char_${character.name}'), style: const TextStyle(color: Colors.white)),
 
 
                                         const SizedBox(width: 10),
@@ -3850,7 +3850,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                                 child: _buildActionButton(
 
 
-                                  "İptal",
+                                  "Ä°ptal",
 
 
                                   Icons.close,
@@ -3886,7 +3886,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                                 child: _buildActionButton(
 
 
-                                  "Onayla",
+                                  Loc.get("ui_confirm"),
 
 
                                   Icons.check,
@@ -3904,7 +3904,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                                     if (selectedPlace == null) {
 
 
-                                      _showModernAlert(context, "HEDEF BULUNAMADI", "Lütfen haritadan göndermek istediğiniz mekanı seçin.", Colors.redAccent, Icons.location_off);
+                                      _showModernAlert(context, "HEDEF BULUNAMADI", "LÃ¼tfen haritadan gÃ¶ndermek istediÄŸiniz mekanÄ± seÃ§in.", Colors.redAccent, Icons.location_off);
 
 
                                       return;
@@ -4179,7 +4179,7 @@ Loc.get("radio_desc"),
                     _buildActionButton(
 
 
-                      "Kapat",
+                      Loc.get("btn_close"),
 
 
                       Icons.close,
@@ -4616,7 +4616,7 @@ Loc.get("store_header_desc"),
                     _buildActionButton(
 
 
-                      "Kapat",
+                      Loc.get("btn_close"),
 
 
                       Icons.close,
@@ -4857,7 +4857,7 @@ Loc.get("guide_header"),
                               title: Loc.get("guide_s1_title"),
 
 
-                              content: "Sığınakta ailenizle birlikte olabildiğince uzun süre hayatta kalmak. Su ve Çorba stoklarınızı akıllıca yönetin. Günleri atlatmak için sağ alttaki 'Günü Bitir' butonunu kullanın. Açlık ve susuzluk karakterleri hastalandırır, yalnızlık delirtir. Herkes ölürse oyun biter.",
+                              content: "SÄ±ÄŸÄ±nakta ailenizle birlikte olabildiÄŸince uzun sÃ¼re hayatta kalmak. Su ve Ã‡orba stoklarÄ±nÄ±zÄ± akÄ±llÄ±ca yÃ¶netin. GÃ¼nleri atlatmak iÃ§in saÄŸ alttaki 'GÃ¼nÃ¼ Bitir' butonunu kullanÄ±n. AÃ§lÄ±k ve susuzluk karakterleri hastalandÄ±rÄ±r, yalnÄ±zlÄ±k delirtir. Herkes Ã¶lÃ¼rse oyun biter.",
 
 
                             ),
@@ -4875,7 +4875,7 @@ Loc.get("guide_header"),
                               title: Loc.get("guide_s2_title"),
 
 
-                              content: "Oyun, cihazınızın konumunu kullanarak etrafınızdaki gerçek dünyayı haritalandırır. 'Keşfe Çık' diyerek karakterlerinizi Eczane, Market veya Nalbur gibi yakınınızdaki noktalara erzak toplamaya gönderebilirsiniz. Dışarıdaki tehlikeli olaylara ve yağmacılara karşı dikkatli olun!",
+                              content: "Oyun, cihazÄ±nÄ±zÄ±n konumunu kullanarak etrafÄ±nÄ±zdaki gerÃ§ek dÃ¼nyayÄ± haritalandÄ±rÄ±r. 'KeÅŸfe Ã‡Ä±k' diyerek karakterlerinizi Eczane, Market veya Nalbur gibi yakÄ±nÄ±nÄ±zdaki noktalara erzak toplamaya gÃ¶nderebilirsiniz. DÄ±ÅŸarÄ±daki tehlikeli olaylara ve yaÄŸmacÄ±lara karÅŸÄ± dikkatli olun!",
 
 
                             ),
@@ -4890,10 +4890,10 @@ Loc.get("guide_header"),
                               color: Colors.purpleAccent,
 
 
-                              title: "3. KARAKTER YETENEK (TRAIT) SİSTEMİ",
+                              title: "3. KARAKTER YETENEK (TRAIT) SÄ°STEMÄ°",
 
 
-                              content: "Ailenin her üyesi oyuna tamamen rastgele yeteneklerle (Örn: Demir Mide, Şifacı, Çevik) başlar. Karakterlerinizin portresine tıklayarak durumlarını görün, yemek/su verin, medkit kullanın veya sohbet ederek morallerini yüksek tutun.",
+                              content: "Ailenin her Ã¼yesi oyuna tamamen rastgele yeteneklerle (Ã–rn: Demir Mide, ÅifacÄ±, Ã‡evik) baÅŸlar. Karakterlerinizin portresine tÄ±klayarak durumlarÄ±nÄ± gÃ¶rÃ¼n, yemek/su verin, medkit kullanÄ±n veya sohbet ederek morallerini yÃ¼ksek tutun.",
 
 
                             ),
@@ -4908,10 +4908,10 @@ Loc.get("guide_header"),
                               color: Colors.orangeAccent,
 
 
-                              title: "4. KAYNAK VE ENVANTER YÖNETİMİ",
+                              title: "4. KAYNAK VE ENVANTER YÃ–NETÄ°MÄ°",
 
 
-                              content: "• Su & Çorba: Temel yaşam kaynağıdır.\n• İlk Yardım Kiti (Medkit): Hastalık ve yaralanmaları anında iyileştirir.\n• Alet Çantası (Tool): Havalandırma gibi sığınak arızalarını tamir etmenizi veya keşiflerdeki kilitli kasaları açmanızı sağlar.\n• Cephane: Gece sığınağa saldıran yağmacıları veya yaratıkları savuşturmak için şarttır.",
+                              content: "â€¢ Su & Ã‡orba: Temel yaÅŸam kaynaÄŸÄ±dÄ±r.\nâ€¢ Ä°lk YardÄ±m Kiti (Medkit): HastalÄ±k ve yaralanmalarÄ± anÄ±nda iyileÅŸtirir.\nâ€¢ Alet Ã‡antasÄ± (Tool): HavalandÄ±rma gibi sÄ±ÄŸÄ±nak arÄ±zalarÄ±nÄ± tamir etmenizi veya keÅŸiflerdeki kilitli kasalarÄ± aÃ§manÄ±zÄ± saÄŸlar.\nâ€¢ Cephane: Gece sÄ±ÄŸÄ±naÄŸa saldÄ±ran yaÄŸmacÄ±larÄ± veya yaratÄ±klarÄ± savuÅŸturmak iÃ§in ÅŸarttÄ±r.",
 
 
                             ),
@@ -4926,10 +4926,10 @@ Loc.get("guide_header"),
                               color: Colors.lightBlue,
 
 
-                              title: "5. RADYO VE GİZLİ SONLAR",
+                              title: "5. RADYO VE GÄ°ZLÄ° SONLAR",
 
 
-                              content: "Kurtuluş için tek yol sığınakta çürümek değil! Günde bir kez radyoyu kullanarak askeri frekansları arayabilir (Sinyal Tara) veya müzik dinleyerek moralleri düzeltebilirsiniz. Askeri tahliye noktalarını bularak veya gizemli 'Ütopya' kolonisine giden yolu açarak ailenizi kurtarın.",
+                              content: "KurtuluÅŸ iÃ§in tek yol sÄ±ÄŸÄ±nakta Ã§Ã¼rÃ¼mek deÄŸil! GÃ¼nde bir kez radyoyu kullanarak askeri frekanslarÄ± arayabilir (Sinyal Tara) veya mÃ¼zik dinleyerek moralleri dÃ¼zeltebilirsiniz. Askeri tahliye noktalarÄ±nÄ± bularak veya gizemli 'Ãœtopya' kolonisine giden yolu aÃ§arak ailenizi kurtarÄ±n.",
 
 
                             ),
@@ -4959,7 +4959,7 @@ Loc.get("guide_header"),
                     child: _buildActionButton(
 
 
-                      "Anladım, Hayatta Kalmaya Hazırım",
+                      Loc.get("guide_close_btn"),
 
 
                       Icons.check,
@@ -6207,3 +6207,6 @@ class _ShakeWidgetState extends State<ShakeWidget> with SingleTickerProviderStat
 
 
 }
+
+
+
