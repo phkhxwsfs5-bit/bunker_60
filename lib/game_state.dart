@@ -32,9 +32,9 @@ class GameState extends ChangeNotifier {
 
   // Canlıya Çıkarken Kullanılacak GERÇEK AdMob ID'leri
 
-  final String _testRewardedId = Platform.isIOS ? 'ca-app-pub-3940256099942544/1712481469' : 'ca-app-pub-3711837388078625/8361549166';
+  final String _testRewardedId = Platform.isIOS ? 'ca-app-pub-3711837388078625/2088644651' : 'ca-app-pub-3711837388078625/8361549166';
 
-  final String _testInterstitialId = Platform.isIOS ? 'ca-app-pub-3940256099942544/4411468910' : 'ca-app-pub-3711837388078625/4418434729';
+  final String _testInterstitialId = Platform.isIOS ? 'ca-app-pub-3711837388078625/1485562314' : 'ca-app-pub-3711837388078625/4418434729';
 
 
 
@@ -130,7 +130,12 @@ class GameState extends ChangeNotifier {
 
   late GameEvent currentEvent;
 
-  String get dailyLog => currentEvent.description;
+  String get dailyLog {
+    if (day == 1 && (currentEvent.description == Loc.get("evt_ilkgeceokzorduy") || currentEvent.description == "The first night was very hard. We heard strange scratching noises from above. The light bulb keeps flickering." || currentEvent.description == "İlk gece çok zordu. Yukarıdan garip kazıma sesleri duyduk. Ampul sürekli titriyor." || currentEvent.description == "İlk gece çok zordu. Yukarıdan garip tıkırtılar duyduk. Ampul sürekli göz kırpıyor.")) {
+        return Loc.get("evt_ilkgeceokzorduy");
+    }
+    return currentEvent.description;
+  }
 
 
 
