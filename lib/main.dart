@@ -7,11 +7,7 @@ import 'package:purchases_flutter/purchases_flutter.dart'; // EKLENDİ
 import 'game_state.dart';
 import 'splash_screen.dart';
 
-import 'localization.dart';
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Loc.loadLanguage();
   WidgetsFlutterBinding.ensureInitialized();
   
   // AdMob SDK Başlatma
@@ -20,8 +16,12 @@ void main() async {
   // --- REVENUECAT BAŞLATMA SİSTEMİ ---
   await Purchases.setLogLevel(LogLevel.debug); // Geliştirme aşamasında hataları terminalde gösterir
   
-  // Bunker 06 (Play Store) Public API Anahtarı
-  PurchasesConfiguration configuration = PurchasesConfiguration("goog_DImuaWLEZUIKMbyMLlQPOJwzXvQ");
+  PurchasesConfiguration configuration;
+  if (Platform.isIOS) {
+    configuration = PurchasesConfiguration("appl_fsjWtlFywoZVmoqxmBPxQuxVMXr");
+  } else {
+    configuration = PurchasesConfiguration("goog_DImuaWLEZUIKMbyMLlQPOJwzXvQ");
+  }
   await Purchases.configure(configuration);
   
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
