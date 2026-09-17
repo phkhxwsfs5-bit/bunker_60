@@ -59,7 +59,7 @@ class GameState extends ChangeNotifier {
   int toolCount = 1;
 
   int ammoCount = 0;
-  String currentLanguage = 'tr';
+  String currentLanguage = 'en';
 
 
 
@@ -2039,7 +2039,7 @@ class GameState extends ChangeNotifier {
     isGameOver = prefs.getBool('isGameOver') ?? false;
 
     isGameWon = prefs.getBool('isGameWon') ?? false;
-    currentLanguage = prefs.getString('currentLanguage') ?? 'tr';
+    currentLanguage = prefs.getString('currentLanguage') ?? 'en';
 
     
 
