@@ -441,7 +441,7 @@ class GameState extends ChangeNotifier {
 
           currentEvent = GameEvent(
 
-            description: Localization.t('event_char_outside', currentLanguage, {'desc': currentEvent!.description, 'char': exploringCharacter ?? ''}),
+            description: Localization.t('event_char_outside', currentLanguage, {'desc': currentEvent!.description, 'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''}),
 
             choices: currentEvent.choices,
 
@@ -496,7 +496,7 @@ class GameState extends ChangeNotifier {
 
       currentEvent = GameEvent(
 
-        description: Localization.t('event_radio_safe', currentLanguage, {'char': exploringCharacter ?? ''}),
+        description: Localization.t('event_radio_safe', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''}),
 
         choices: [
 
@@ -510,7 +510,7 @@ class GameState extends ChangeNotifier {
 
               bool breakTool = true; 
 
-              if (exploringCharacter == "Baba" && getTraitName("Baba") == "trait_mechanic" && Random().nextInt(100) < 30) {
+              if (exploringCharacter == "role_father" && getTraitName("role_father") == "trait_mechanic" && Random().nextInt(100) < 30) {
 
                  breakTool = false;
 
@@ -522,7 +522,7 @@ class GameState extends ChangeNotifier {
 
               waterCount += 2; soupCount += 2;
 
-              currentEvent = GameEvent(description: Localization.t('event_safe_opened', currentLanguage, {'char': exploringCharacter ?? ''}), choices: []);
+              currentEvent = GameEvent(description: Localization.t('event_safe_opened', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''}), choices: []);
 
               notifyListeners(); saveGame();
 
@@ -538,7 +538,7 @@ class GameState extends ChangeNotifier {
 
             onSelect: () {
 
-              currentEvent = GameEvent(description: Localization.t('event_safe_left', currentLanguage, {'char': exploringCharacter ?? ''}), choices: []);
+              currentEvent = GameEvent(description: Localization.t('event_safe_left', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''}), choices: []);
 
               notifyListeners(); saveGame();
 
@@ -554,7 +554,7 @@ class GameState extends ChangeNotifier {
 
       currentEvent = GameEvent(
 
-        description: Localization.t('event_radio_stranger', currentLanguage, {'char': exploringCharacter ?? ''}),
+        description: Localization.t('event_radio_stranger', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''}),
 
         choices: [
 
@@ -616,7 +616,7 @@ class GameState extends ChangeNotifier {
 
       currentEvent = GameEvent(
 
-        description: Localization.t('event_radio_trader', currentLanguage, {'char': exploringCharacter ?? ''}),
+        description: Localization.t('event_radio_trader', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''}),
 
         choices: [
 
@@ -736,7 +736,7 @@ class GameState extends ChangeNotifier {
 
       
 
-      if (getTraitName("Anne") == "trait_observer" && characters[1].isAlive && !characters[1].isExploring) chance += 20; 
+      if (getTraitName("role_mother") == "trait_observer" && characters[1].isAlive && !characters[1].isExploring) chance += 20; 
 
 
 
@@ -1000,7 +1000,7 @@ class GameState extends ChangeNotifier {
 
                 bool breakTool = true; 
 
-                if (getTraitName("Baba") == "trait_mechanic" && characters[0].isAlive && !characters[0].isExploring && Random().nextInt(100) < 30) breakTool = false;
+                if (getTraitName("role_father") == "trait_mechanic" && characters[0].isAlive && !characters[0].isExploring && Random().nextInt(100) < 30) breakTool = false;
 
                 if (breakTool) toolCount--; 
 
@@ -1022,7 +1022,7 @@ class GameState extends ChangeNotifier {
 
             onSelect: () {
 
-              if (getTraitName(Localization.t('role_kid', currentLanguage)) == "trait_lucky" && characters[2].isAlive && !characters[2].isExploring && Random().nextBool()) {
+              if (getTraitName("role_kid") == "trait_lucky" && characters[2].isAlive && !characters[2].isExploring && Random().nextBool()) {
 
                  currentEvent = GameEvent(description: Localization.t('event_roaches_left', currentLanguage), choices: []);
 
@@ -1344,7 +1344,7 @@ class GameState extends ChangeNotifier {
 
       bool decreaseSoup = true;
 
-      if (getTraitName("Anne") == "trait_frugal" && characters[1].isAlive && !characters[1].isExploring && Random().nextInt(100) < 25) decreaseSoup = false;
+      if (getTraitName("role_mother") == "trait_frugal" && characters[1].isAlive && !characters[1].isExploring && Random().nextInt(100) < 25) decreaseSoup = false;
 
       
 
@@ -1390,7 +1390,7 @@ class GameState extends ChangeNotifier {
 
       
 
-      if (char.name == Localization.t('role_kid', currentLanguage) && getTraitName(Localization.t('role_kid', currentLanguage)) == "trait_cheerful") {
+      if (char.name == "role_kid" && getTraitName("role_kid") == "trait_cheerful") {
 
         for (var c in characters) {
 
@@ -1424,7 +1424,7 @@ class GameState extends ChangeNotifier {
 
     
 
-    if (characterName == "Anne" && getTraitName("Anne") == "trait_practical") {
+    if (characterName == "role_mother" && getTraitName("role_mother") == "trait_practical") {
 
       daysUntilReturn = Random().nextInt(2) + 1; 
 
@@ -1444,7 +1444,7 @@ class GameState extends ChangeNotifier {
 
     
 
-    currentEvent = GameEvent(description: Localization.t('log_expedition_start', currentLanguage, {'char': characterName, 'dest': destination.name}), choices: []);
+    currentEvent = GameEvent(description: Localization.t('log_expedition_start', currentLanguage, {'char': Localization.t(characterName, currentLanguage), 'dest': destination.name}), choices: []);
 
     notifyListeners();
 
@@ -1460,7 +1460,7 @@ class GameState extends ChangeNotifier {
 
       isGameWon = true;
 
-      currentEvent = GameEvent(description: Localization.t('ending_heli', currentLanguage, {'char': exploringCharacter ?? ''}), choices: []);
+      currentEvent = GameEvent(description: Localization.t('ending_heli', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''}), choices: []);
 
       notifyListeners(); deleteSaveData(); return;
 
@@ -1474,13 +1474,13 @@ class GameState extends ChangeNotifier {
 
         isGameWon = true;
 
-        currentEvent = GameEvent(description: Localization.t('ending_utopia', currentLanguage, {'char': exploringCharacter ?? ''}), choices: []);
+        currentEvent = GameEvent(description: Localization.t('ending_utopia', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''}), choices: []);
 
         notifyListeners(); deleteSaveData(); return;
 
       } else {
 
-        String failText = Localization.t('ending_utopia_fail', currentLanguage, {'char': exploringCharacter ?? ''});
+        String failText = Localization.t('ending_utopia_fail', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''});
 
         for (var char in characters) { if (char.name == exploringCharacter) char.isExploring = false; }
 
@@ -1502,11 +1502,11 @@ class GameState extends ChangeNotifier {
 
     
 
-    bool isAgile = (exploringCharacter == Localization.t('role_kid', currentLanguage) && getTraitName(Localization.t('role_kid', currentLanguage)) == "trait_agile");
+    bool isAgile = (exploringCharacter == "role_kid" && getTraitName("role_kid") == "trait_agile");
 
-    bool isProtective = (exploringCharacter == "Baba" && getTraitName("Baba") == "trait_protector");
+    bool isProtective = (exploringCharacter == "role_father" && getTraitName("role_father") == "trait_protector");
 
-    bool isScavenger = (exploringCharacter == Localization.t('role_kid', currentLanguage) && getTraitName(Localization.t('role_kid', currentLanguage)) == "trait_sharp_eyed");
+    bool isScavenger = (exploringCharacter == "role_kid" && getTraitName("role_kid") == "trait_sharp_eyed");
 
 
 
@@ -1536,7 +1536,7 @@ class GameState extends ChangeNotifier {
 
         waterCount += 1;
 
-        resultText = Localization.t('expedition_success_pharmacy', currentLanguage, {'char': exploringCharacter ?? ''});
+        resultText = Localization.t('expedition_success_pharmacy', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''});
 
       } else if (exploringDestinationType == 'supermarket') {
 
@@ -1554,7 +1554,7 @@ class GameState extends ChangeNotifier {
 
         toolCount += (1 + extra);
 
-        resultText = Localization.t('expedition_success_hardware', currentLanguage, {'char': exploringCharacter ?? ''});
+        resultText = Localization.t('expedition_success_hardware', currentLanguage, {'char': exploringCharacter != null ? Localization.t(exploringCharacter!, currentLanguage) : ''});
 
       } else {
 
