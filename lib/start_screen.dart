@@ -22,6 +22,7 @@ class _StartScreenState extends State<StartScreen> {
     super.initState();
     _checkSaveGame();
     _initAudioAndPlay(); 
+    Future.microtask(() => context.read<GameState>().initLanguage());
   }
 
   Future<void> _initAudioAndPlay() async {

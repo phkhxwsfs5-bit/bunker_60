@@ -269,10 +269,19 @@ class GameState extends ChangeNotifier {
 
 
 
-  void setLanguage(String lang) {
+  void setLanguage(String lang) async {
     if (currentLanguage != lang) {
       currentLanguage = lang;
-      saveGame();
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('currentLanguage', lang);
+      notifyListeners();
+    }
+  }
+
+  Future<void> initLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('currentLanguage')) {
+      currentLanguage = prefs.getString('currentLanguage')!;
       notifyListeners();
     }
   }
