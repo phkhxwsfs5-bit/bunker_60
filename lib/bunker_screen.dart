@@ -460,7 +460,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                char.name.toUpperCase(),
+                                Localization.t(char.name, gameState.currentLanguage).toUpperCase(),
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -545,7 +545,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     ),
                     const SizedBox(height: 12),
                     _buildActionButton(
-                      "Kapat",
+                      Localization.t('ui_close', context.read<GameState>().currentLanguage),
                       Icons.close,
                       Colors.white,
                       () {
@@ -777,7 +777,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
           const Spacer(),
           
           _buildTopMenuButton(
-            title: "RADYO",
+            title: Localization.t('ui_radio', context.read<GameState>().currentLanguage),
             imagePath: 'assets/icon_radio.png',
             onTap: () {
               AudioManager().playSFX('ui_click.mp3');
@@ -793,7 +793,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
             },
           ),
           _buildTopMenuButton(
-            title: "REHBER",
+            title: Localization.t('ui_guide', context.read<GameState>().currentLanguage),
             imagePath: 'assets/icon_logbook.png',
             onTap: () {
               AudioManager().playSFX('ui_click.mp3');
@@ -1257,10 +1257,10 @@ class _BunkerScreenState extends State<BunkerScreen> {
                                     value: character.name,
                                     child: Row(
                                       children: [
-                                        Text(character.name, style: const TextStyle(color: Colors.white)),
+                                        Text(Localization.t(character.name, gameState.currentLanguage), style: const TextStyle(color: Colors.white)),
                                         const SizedBox(width: 10),
                                         Text(
-                                          "(${gameState.getTraitName(character.name)})",
+                                          "(${Localization.t(gameState.getTraitName(character.name), gameState.currentLanguage)})",
                                           style: const TextStyle(color: Colors.amber, fontSize: 11),
                                         ),
                                       ],
@@ -1295,7 +1295,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                               const SizedBox(width: 12),
                               Expanded(
                                 child: _buildActionButton(
-                                  "Onayla",
+                                  Localization.t('ui_confirm', context.read<GameState>().currentLanguage),
                                   Icons.check,
                                   Colors.white,
                                   () {
@@ -1394,7 +1394,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     ),
                     const SizedBox(height: 12),
                     _buildActionButton(
-                      "Kapat",
+                      Localization.t('ui_close', context.read<GameState>().currentLanguage),
                       Icons.close,
                       Colors.white,
                       () {
@@ -1491,7 +1491,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     const SizedBox(height: 6),
                     _buildModernActionRow(
                       imagePath: 'assets/icon_store.png',
-                      title: "Hayatta Kalma Paketi (\$1)",
+                      title: Localization.t('ui_survival_pack', context.read<GameState>().currentLanguage),
                       subtitle: Localization.t('ui_buy_pack_desc', context.read<GameState>().currentLanguage),
                       enabled: true,
                       onTap: () async {
@@ -1541,7 +1541,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     ),
                     const SizedBox(height: 12),
                     _buildActionButton(
-                      "Kapat",
+                      Localization.t('ui_close', context.read<GameState>().currentLanguage),
                       Icons.close,
                       Colors.white,
                       () {
@@ -1810,7 +1810,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         ),
                         const SizedBox(height: 20),
                         _buildActionButton(
-                          "Kapat",
+                          Localization.t('ui_close', context.read<GameState>().currentLanguage),
                           Icons.close,
                           Colors.white,
                           () {
