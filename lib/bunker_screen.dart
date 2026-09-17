@@ -1,6 +1,7 @@
-﻿import 'dart:math'; 
+import 'dart:math'; 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'localization.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -80,16 +81,16 @@ class _BunkerScreenState extends State<BunkerScreen> {
       if (customerInfo.entitlements.all["elite_access"]?.isActive == true) {
         gameState.restoreAdFree(); 
         if (context.mounted) {
-          _showModernAlert(context, "BAŞARILI", "Satın alımlarınız başarıyla geri yüklendi! Reklamlar kaldırıldı.", Colors.greenAccent, Icons.check_circle);
+          _showModernAlert(context, Localization.t('ui_success', context.read<GameState>().currentLanguage), Localization.t('ui_restore_success', context.read<GameState>().currentLanguage), Colors.greenAccent, Icons.check_circle);
         }
       } else {
         if (context.mounted) {
-          _showModernAlert(context, "BİLGİ", "Geri yüklenecek aktif bir satın alım bulunamadı.", Colors.orangeAccent, Icons.info_outline);
+          _showModernAlert(context, Localization.t('ui_info', context.read<GameState>().currentLanguage), Localization.t('ui_restore_fail', context.read<GameState>().currentLanguage), Colors.orangeAccent, Icons.info_outline);
         }
       }
     } catch (e) {
       if (context.mounted) {
-        _showModernAlert(context, "BAĞLANTI HATASI", "Sunucuyla iletişim kurulamadı. İnternetinizi kontrol edin.", Colors.redAccent, Icons.error_outline);
+        _showModernAlert(context, Localization.t('ui_conn_error', context.read<GameState>().currentLanguage), Localization.t('ui_conn_error_desc', context.read<GameState>().currentLanguage), Colors.redAccent, Icons.error_outline);
       }
     }
   }
@@ -147,9 +148,9 @@ class _BunkerScreenState extends State<BunkerScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _buildStrokedText("SİNYAL KESİLDİ", 46, Colors.redAccent, 8.0, 4.0),
+                  _buildStrokedText(Localization.t('ui_signal_lost', context.read<GameState>().currentLanguage), 46, Colors.redAccent, 8.0, 4.0),
                   const SizedBox(height: 16),
-                  _buildStrokedText("HAYATTA KALINAN GÜN", 20, Colors.white, 6.0, 2.0),
+                  _buildStrokedText(Localization.t('ui_days_survived', context.read<GameState>().currentLanguage), 20, Colors.white, 6.0, 2.0),
                   _buildStrokedText("${gameState.currentDay}", 84, Colors.white, 14.0, 0.0),
                   const SizedBox(height: 40),
                   ElevatedButton(
@@ -169,8 +170,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         MaterialPageRoute(builder: (context) => const StartScreen()),
                       );
                     },
-                    child: const Text(
-                      "ANA MENÜYE DÖN",
+                    child: Text(
+                      Localization.t('ui_back_to_menu', context.read<GameState>().currentLanguage),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -202,7 +203,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                 children: [
                   _buildStrokedText("KURTARILDIK!", 46, Colors.amber.shade400, 8.0, 4.0),
                   const SizedBox(height: 16),
-                  _buildStrokedText("SIĞINAKTA GEÇEN GÜN", 20, Colors.white, 6.0, 2.0),
+                  _buildStrokedText(Localization.t('ui_bunker_days', context.read<GameState>().currentLanguage), 20, Colors.white, 6.0, 2.0),
                   _buildStrokedText("${gameState.currentDay}", 84, Colors.white, 14.0, 0.0),
                   const SizedBox(height: 40),
                   ElevatedButton(
@@ -222,8 +223,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         MaterialPageRoute(builder: (context) => const StartScreen()),
                       );
                     },
-                    child: const Text(
-                      "ANA MENÜYE DÖN",
+                    child: Text(
+                      Localization.t('ui_back_to_menu', context.read<GameState>().currentLanguage),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -408,13 +409,13 @@ class _BunkerScreenState extends State<BunkerScreen> {
   }
 
   void _showFeedDialog(BuildContext ctx, GameState gameState, Character char) {
-    String traitName = gameState.getTraitName(char.name);
-    String traitDesc = gameState.getTraitDesc(char.name);
+    String traitName = Localization.t(gameState.getTraitName(char.name), gameState.currentLanguage);
+    String traitDesc = Localization.t(gameState.getTraitDesc(char.name), gameState.currentLanguage);
 
     showDialog(
       context: ctx,
       barrierColor: Colors.black.withValues(alpha: 0.3),
-      builder: (BuildContext dialogContext) {
+      builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.transparent,
           insetPadding: const EdgeInsets.all(16),
@@ -497,49 +498,49 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     const SizedBox(height: 12),
                     _buildModernActionRow(
                       imagePath: 'assets/icon_water.png',
-                      title: "Su İçir (-1 Su)",
-                      subtitle: "Susuzluğunu giderir.",
+                      title: Localization.t('ui_give_water', gameState.currentLanguage),
+                      subtitle: Localization.t('ui_give_water_desc', gameState.currentLanguage),
                       enabled: gameState.waterCount > 0 && char.thirstLevel > 0,
                       onTap: () {
                         AudioManager().playSFX('action_water.mp3');
                         gameState.feedWater(char);
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(context); // HATA DÜZELTİLDİ: ctx yerine context
                       },
                     ),
                     const SizedBox(height: 6),
                     _buildModernActionRow(
                       imagePath: 'assets/icon_soup.png',
-                      title: "Çorba Yedir (-1 Çorba)",
-                      subtitle: "Açlığını giderir.",
+                      title: Localization.t('ui_give_soup', gameState.currentLanguage),
+                      subtitle: Localization.t('ui_give_soup_desc', gameState.currentLanguage),
                       enabled: gameState.soupCount > 0 && char.hungerLevel > 0,
                       onTap: () {
                         AudioManager().playSFX('action_soup.mp3');
                         gameState.feedSoup(char);
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(context); // HATA DÜZELTİLDİ: ctx yerine context
                       },
                     ),
                     const SizedBox(height: 6),
                     _buildModernActionRow(
                       imagePath: 'assets/icon_medkit.png',
-                      title: "Medkit Kullan (-1 Medkit)",
-                      subtitle: "Hastalığı/Yarayı iyileştirir.",
+                      title: Localization.t('ui_use_medkit', gameState.currentLanguage),
+                      subtitle: Localization.t('ui_give_medkit_desc', gameState.currentLanguage),
                       enabled: gameState.medkitCount > 0 && (char.status == 'sick' || char.status == 'injured'),
                       onTap: () {
                         AudioManager().playSFX('action_heal.mp3');
                         gameState.healCharacter(char);
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(context); // HATA DÜZELTİLDİ: ctx yerine context
                       },
                     ),
                     const SizedBox(height: 6),
                     _buildModernActionRow(
                       imagePath: 'assets/icon_chat.png',
-                      title: "Sohbet Et",
-                      subtitle: "Moralini yükseltir. (Günde 1 kez)",
+                      title: Localization.t('ui_chat', gameState.currentLanguage),
+                      subtitle: Localization.t('ui_chat_desc', gameState.currentLanguage),
                       enabled: !gameState.hasChattedToday && char.moraleLevel > 0,
                       onTap: () {
                         AudioManager().playSFX('action_chat.mp3');
                         gameState.talkToCharacter(char);
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(context); // HATA DÜZELTİLDİ: ctx yerine context
                       },
                     ),
                     const SizedBox(height: 12),
@@ -549,7 +550,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       Colors.white,
                       () {
                         AudioManager().playSFX('ui_click.mp3');
-                        Navigator.pop(dialogContext); // HATA DÜZELTİLDİ: ctx yerine dialogContext
+                        Navigator.pop(context); // HATA DÜZELTİLDİ: ctx yerine context
                       },
                     ),
                   ],
@@ -753,7 +754,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
             height: 32,
             child: Center(
               child: Text(
-                "GÜN ${gameState.currentDay}",
+                Localization.t('ui_day_counter', gameState.currentLanguage, {'day': gameState.currentDay.toString()}),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 22,
@@ -768,9 +769,9 @@ class _BunkerScreenState extends State<BunkerScreen> {
           const SizedBox(width: 14), 
           
           _buildResourceItem("Su", 'assets/icon_water.png', "${gameState.waterCount}"),
-          _buildResourceItem("Çorba", 'assets/icon_soup.png', "${gameState.soupCount}"),
-          _buildResourceItem("İlk Yardım Kiti", 'assets/icon_medkit.png', "${gameState.medkitCount}"),
-          _buildResourceItem("Alet Çantası", 'assets/icon_tool.png', "${gameState.toolCount}"),
+          _buildResourceItem(Localization.t('ui_soup', gameState.currentLanguage), 'assets/icon_soup.png', "${gameState.soupCount}"),
+          _buildResourceItem(Localization.t('ui_medkit', gameState.currentLanguage), 'assets/icon_medkit.png', "${gameState.medkitCount}"),
+          _buildResourceItem(Localization.t('ui_tool', gameState.currentLanguage), 'assets/icon_tool.png', "${gameState.toolCount}"),
           _buildResourceItem("Cephane", 'assets/icon_ammo.png', "${gameState.ammoCount}"),
           
           const Spacer(),
@@ -784,7 +785,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
             },
           ),
           _buildTopMenuButton(
-            title: "MAĞAZA",
+            title: Localization.t('ui_store', gameState.currentLanguage),
             imagePath: 'assets/icon_store.png',
             onTap: () {
               AudioManager().playSFX('ui_click.mp3');
@@ -800,7 +801,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
             },
           ),
           _buildTopMenuButton(
-            title: "AYARLAR",
+            title: Localization.t('ui_settings', context.read<GameState>().currentLanguage),
             imagePath: 'assets/icon_settings.png',
             onTap: () {
               AudioManager().playSFX('ui_click.mp3');
@@ -857,8 +858,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
             children: [
               Image.asset('assets/icon_logbook.png', width: 28, height: 28), 
               const SizedBox(width: 10),
-              const Text(
-                "GÜNLÜK KAYITLARI",
+              Text(
+                      Localization.t('ui_logs', gameState.currentLanguage),
                 style: TextStyle(
                   color: Colors.lightBlueAccent,
                   fontSize: 16, 
@@ -914,7 +915,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
             Column(
               children: [
                 _buildActionImageButton(
-                  gameState.exploringCharacter != null ? "KEŞİF SÜRÜYOR" : "KEŞFE ÇIK",
+                  gameState.exploringCharacter != null ? Localization.t('ui_expedition_ongoing', gameState.currentLanguage) : Localization.t('ui_expedition_start', gameState.currentLanguage),
                   'assets/icon_explore.png',
                   gameState.exploringCharacter != null ? Colors.white38 : Colors.white70,
                   () {
@@ -927,7 +928,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                 const SizedBox(height: 10),
                 
                 _buildGradientImageButton(
-                  "GÜNÜ BİTİR",
+                  Localization.t('ui_end_day', gameState.currentLanguage),
                   'assets/icon_night.png',
                   () {
                     AudioManager().playSFX('ui_end_day.mp3');
@@ -1060,7 +1061,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext dialogContext) {
+      builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (context, setState) {
             return Dialog(
@@ -1094,8 +1095,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                               children: [
                                 Image.asset('assets/icon_explore.png', width: 24, height: 24),
                                 const SizedBox(width: 8),
-                                const Text(
-                                  "Keşif Görevi Planla",
+                                Text(
+                      Localization.t('ui_plan_expedition', context.read<GameState>().currentLanguage),
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 18,
@@ -1106,8 +1107,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                             ),
                           ),
                           const SizedBox(height: 12),
-                          const Text(
-                            "Hedef Seçimi",
+                          Text(
+                      Localization.t('ui_select_target', context.read<GameState>().currentLanguage),
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: 12,
@@ -1229,8 +1230,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                             ),
                           ),
                           const SizedBox(height: 16),
-                          const Text(
-                            "Gönderilecek Karakter",
+                          Text(
+                      Localization.t('ui_select_char', context.read<GameState>().currentLanguage),
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: 12,
@@ -1282,12 +1283,12 @@ class _BunkerScreenState extends State<BunkerScreen> {
                             children: [
                               Expanded(
                                 child: _buildActionButton(
-                                  "İptal",
+                                  Localization.t('ui_cancel', context.read<GameState>().currentLanguage),
                                   Icons.close,
                                   Colors.white,
                                   () {
                                     AudioManager().playSFX('ui_click.mp3');
-                                    Navigator.pop(dialogContext);
+                                    Navigator.pop(context);
                                   },
                                 ),
                               ),
@@ -1300,10 +1301,10 @@ class _BunkerScreenState extends State<BunkerScreen> {
                                   () {
                                     AudioManager().playSFX('ui_click.mp3');
                                     if (selectedPlace == null) {
-                                      _showModernAlert(context, "HEDEF BULUNAMADI", "Lütfen haritadan göndermek istediğiniz mekanı seçin.", Colors.redAccent, Icons.location_off);
+                                      _showModernAlert(context, Localization.t('ui_target_not_found', gameState.currentLanguage), Localization.t('ui_please_select_target', context.read<GameState>().currentLanguage), Colors.redAccent, Icons.location_off);
                                       return;
                                     }
-                                    Navigator.pop(dialogContext);
+                                    Navigator.pop(context);
                                     context.read<GameState>().startExpedition(selectedCharacter, selectedPlace!);
                                   },
                                 ),
@@ -1326,7 +1327,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
   void _showRadioDialog(BuildContext context, GameState gameState) {
     showDialog(
       context: context,
-      builder: (BuildContext dialogContext) {
+      builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.transparent,
           insetPadding: const EdgeInsets.all(16),
@@ -1352,8 +1353,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                   children: [
                     Image.asset('assets/icon_radio.png', width: 48, height: 48),
                     const SizedBox(height: 8),
-                    const Text(
-                      "AMATÖR RADYO K6JFD",
+                    Text(
+                      Localization.t('ui_radio_title', context.read<GameState>().currentLanguage),
                       style: TextStyle(
                         color: Colors.lightBlue,
                         fontSize: 16,
@@ -1362,32 +1363,32 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      "Dış dünyadan bir ses duymak veya sadece biraz müzik dinlemek, sığınaktaki herkesin ruh halini etkileyebilir. Günde sadece bir kez kullanabiliriz.",
+                    Text(
+                      Localization.t('ui_radio_desc', context.read<GameState>().currentLanguage),
                       style: TextStyle(color: Colors.white70, fontSize: 12, height: 1.4),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 12),
                     _buildModernActionRow(
                       imagePath: 'assets/icon_radar.png',
-                      title: "Sinyal Tara",
-                      subtitle: "Askeri veya sivil yayınları ara.",
+                      title: Localization.t('ui_scan_signal_btn', context.read<GameState>().currentLanguage),
+                      subtitle: Localization.t('ui_scan_signal', context.read<GameState>().currentLanguage),
                       enabled: !gameState.hasUsedRadioToday,
                       onTap: () {
                         AudioManager().playSFX('radio_static.mp3'); 
-                        Navigator.pop(dialogContext);
+                        Navigator.pop(context);
                         gameState.useRadio("scan");
                       },
                     ),
                     const SizedBox(height: 8),
                     _buildModernActionRow(
                       imagePath: 'assets/icon_music.png', 
-                      title: "Müzik Dinle",
-                      subtitle: "Eski şarkılar moralleri yükseltir.",
+                      title: Localization.t('ui_listen_music', context.read<GameState>().currentLanguage),
+                      subtitle: Localization.t('ui_listen_music_desc', context.read<GameState>().currentLanguage),
                       enabled: !gameState.hasUsedRadioToday,
                       onTap: () {
                         AudioManager().playSFX('radio_music.mp3'); 
-                        Navigator.pop(dialogContext);
+                        Navigator.pop(context);
                         gameState.useRadio("music");
                       },
                     ),
@@ -1398,7 +1399,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       Colors.white,
                       () {
                         AudioManager().playSFX('ui_click.mp3');
-                        Navigator.pop(dialogContext);
+                        Navigator.pop(context);
                       },
                     ),
                   ],
@@ -1414,7 +1415,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
   void _showStoreDialog(BuildContext context, GameState gameState) {
     showDialog(
       context: context,
-      builder: (BuildContext dialogContext) {
+      builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.transparent,
           insetPadding: const EdgeInsets.all(16),
@@ -1440,9 +1441,9 @@ class _BunkerScreenState extends State<BunkerScreen> {
                   children: [
                     Image.asset('assets/icon_store.png', width: 48, height: 48),
                     const SizedBox(height: 8),
-                    const Text(
-                      "KARABORSA / DESTEK",
-                      style: TextStyle(
+                    Text(
+                      Localization.t('ui_black_market', context.read<GameState>().currentLanguage),
+                      style: const TextStyle(
                         color: Colors.amber,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -1451,8 +1452,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      "Dışarıdan veya havadan gelen destek paketleriyle sığınaktaki ömrünü uzat. Telsizle sipariş veriyoruz.",
+                    Text(
+                      Localization.t('ui_store_desc', context.read<GameState>().currentLanguage),
                       style: TextStyle(color: Colors.white70, fontSize: 12, height: 1.4),
                       textAlign: TextAlign.center,
                     ),
@@ -1465,22 +1466,22 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         
                         return _buildModernActionRow(
                           imagePath: 'assets/icon_radio.png', 
-                          title: "Acil Durum Sinyali",
+                          title: Localization.t('ui_emergency_signal', context.read<GameState>().currentLanguage),
                           subtitle: canUseAd 
-                              ? "Kısa bir video izle. Ödül: +1 Su, +1 Çorba." 
-                              : "Sinyal şarj oluyor. $daysLeft gün sonra tekrar kullanılabilir.",
+                              ? Localization.t('ui_watch_ad_desc', context.read<GameState>().currentLanguage) 
+                              : Localization.t('ui_ad_cooldown', context.read<GameState>().currentLanguage, {'days': daysLeft.toString()}),
                           enabled: canUseAd,
                           isAd: true, 
                           onTap: () {
                             AudioManager().playSFX('ui_click.mp3');
-                            Navigator.pop(dialogContext);
+                            Navigator.pop(context);
                             
                             gameState.watchAdForResources(
                               onReward: () {
-                                _showModernAlert(context, "SİNYAL ALINDI", "Destek ulaştı! +1 Su, +1 Çorba kazanıldı.", Colors.greenAccent, Icons.inventory_2);
+                                _showModernAlert(context, Localization.t('ui_signal_received', context.read<GameState>().currentLanguage), Localization.t('ui_ad_reward', context.read<GameState>().currentLanguage), Colors.greenAccent, Icons.inventory_2);
                               },
                               onFailed: () {
-                                _showModernAlert(context, "SİNYAL KOPTU", "Bağlantı kurulamadı veya reklam yüklenemedi. Lütfen internetinizi kontrol edin.", Colors.redAccent, Icons.signal_wifi_off);
+                                _showModernAlert(context, Localization.t('ui_signal_lost', context.read<GameState>().currentLanguage), Localization.t('ui_ad_fail', context.read<GameState>().currentLanguage), Colors.redAccent, Icons.signal_wifi_off);
                               }
                             );
                           },
@@ -1491,20 +1492,20 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     _buildModernActionRow(
                       imagePath: 'assets/icon_store.png',
                       title: "Hayatta Kalma Paketi (\$1)",
-                      subtitle: "+5 Su, +5 Çorba, +2 İlk Yardım, +2 Cephane.",
+                      subtitle: Localization.t('ui_buy_pack_desc', context.read<GameState>().currentLanguage),
                       enabled: true,
                       onTap: () async {
                         AudioManager().playSFX('ui_click.mp3');
-                        Navigator.pop(dialogContext);
+                        Navigator.pop(context);
                         try {
                           await Purchases.purchaseProduct('survival_pack_1');
                           gameState.buyResourcePack();
                           if (context.mounted) {
-                            _showModernAlert(context, "KARGO ULAŞTI", "Paket Satın Alındı! Tüm kaynaklar sığınağa eklendi.", Colors.greenAccent, Icons.check_circle);
+                            _showModernAlert(context, Localization.t('ui_cargo_arrived', context.read<GameState>().currentLanguage), Localization.t('ui_pack_bought', context.read<GameState>().currentLanguage), Colors.greenAccent, Icons.check_circle);
                           }
                         } catch (e) {
                           if (context.mounted) {
-                            _showModernAlert(context, "İŞLEM İPTAL", "Satın alma işlemi tamamlanamadı veya iptal edildi.", Colors.orangeAccent, Icons.cancel);
+                            _showModernAlert(context, Localization.t('ui_transaction_cancel', context.read<GameState>().currentLanguage), Localization.t('ui_transaction_cancel_desc', context.read<GameState>().currentLanguage), Colors.orangeAccent, Icons.cancel);
                           }
                         }
                       },
@@ -1512,15 +1513,15 @@ class _BunkerScreenState extends State<BunkerScreen> {
                     const SizedBox(height: 6),
                     _buildModernActionRow(
                       imagePath: 'assets/icon_elite.png',
-                      title: gameState.isAdFree ? "Elit Sığınak (Aktif)" : "Elit Sürüm (\$5)",
+                      title: gameState.isAdFree ? Localization.t('ui_elite_active', context.read<GameState>().currentLanguage) : Localization.t('ui_elite_buy', context.read<GameState>().currentLanguage),
                       subtitle: gameState.isAdFree
-                          ? "Zorunlu reklamlar kaldırıldı."
-                          : "Zorunlu reklamları kalıcı olarak kaldır. Bonus: +1 Alet.",
+                          ? Localization.t('ui_elite_desc_active', context.read<GameState>().currentLanguage)
+                          : Localization.t('ui_elite_desc_buy', context.read<GameState>().currentLanguage),
                       enabled: !gameState.isAdFree,
                       onTap: () async {
                         AudioManager().playSFX('ui_click.mp3');
                         if (gameState.isAdFree) return;
-                        Navigator.pop(dialogContext);
+                        Navigator.pop(context);
                         
                         try {
                           PurchaseResult result = await Purchases.purchaseProduct('elite_edition_5');
@@ -1528,12 +1529,12 @@ class _BunkerScreenState extends State<BunkerScreen> {
                           if (result.customerInfo.entitlements.all["elite_access"]?.isActive == true) {
                             gameState.buyAdFree();
                             if (context.mounted) {
-                              _showModernAlert(context, "ELİT SÜRÜM AKTİF", "Tebrikler! Reklamlar kaldırıldı ve +1 Alet eklendi.", Colors.greenAccent, Icons.star);
+                              _showModernAlert(context, Localization.t('ui_elite_success', context.read<GameState>().currentLanguage), Localization.t('ui_elite_success_desc', context.read<GameState>().currentLanguage), Colors.greenAccent, Icons.star);
                             }
                           }
                         } catch (e) {
                           if (context.mounted) {
-                            _showModernAlert(context, "İŞLEM İPTAL", "Satın alma işlemi tamamlanamadı veya iptal edildi.", Colors.orangeAccent, Icons.cancel);
+                            _showModernAlert(context, Localization.t('ui_transaction_cancel', context.read<GameState>().currentLanguage), Localization.t('ui_transaction_cancel_desc', context.read<GameState>().currentLanguage), Colors.orangeAccent, Icons.cancel);
                           }
                         }
                       },
@@ -1545,7 +1546,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       Colors.white,
                       () {
                         AudioManager().playSFX('ui_click.mp3');
-                        Navigator.pop(dialogContext);
+                        Navigator.pop(context);
                       },
                     ),
                   ],
@@ -1562,7 +1563,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
     showDialog(
       context: context,
       barrierColor: Colors.black.withValues(alpha: 0.7), 
-      builder: (BuildContext dialogContext) {
+      builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.transparent,
           insetPadding: const EdgeInsets.all(16),
@@ -1596,8 +1597,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       children: [
                         Image.asset('assets/icon_logbook.png', width: 32, height: 32),
                         const SizedBox(width: 12),
-                        const Text(
-                          "HAYATTA KALMA REHBERİ",
+                        Text(
+                      Localization.t('ui_guide_title', context.read<GameState>().currentLanguage),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 22,
@@ -1620,32 +1621,32 @@ class _BunkerScreenState extends State<BunkerScreen> {
                             _buildGuideSection(
                               imagePath: 'assets/icon_night.png',
                               color: Colors.amber,
-                              title: "1. TEMEL AMACINIZ",
-                              content: "Sığınakta ailenizle birlikte olabildiğince uzun süre hayatta kalmak. Su ve Çorba stoklarınızı akıllıca yönetin. Günleri atlatmak için sağ alttaki 'Günü Bitir' butonunu kullanın. Açlık ve susuzluk karakterleri hastalandırır, yalnızlık delirtir. Herkes ölürse oyun biter.",
+                              title: Localization.t('ui_guide_1', context.read<GameState>().currentLanguage),
+                              content: Localization.t('ui_guide_1_desc', context.read<GameState>().currentLanguage),
                             ),
                             _buildGuideSection(
                               imagePath: 'assets/icon_explore.png',
                               color: Colors.greenAccent,
-                              title: "2. KEŞİF SİSTEMİ (GERÇEK DÜNYA HARİTASI)",
-                              content: "Oyun, cihazınızın konumunu kullanarak etrafınızdaki gerçek dünyayı haritalandırır. 'Keşfe Çık' diyerek karakterlerinizi Eczane, Market veya Nalbur gibi yakınınızdaki noktalara erzak toplamaya gönderebilirsiniz. Dışarıdaki tehlikeli olaylara ve yağmacılara karşı dikkatli olun!",
+                              title: Localization.t('ui_guide_2', context.read<GameState>().currentLanguage),
+                              content: Localization.t('ui_guide_2_desc', context.read<GameState>().currentLanguage),
                             ),
                             _buildGuideSection(
                               imagePath: 'assets/icon_chat.png',
                               color: Colors.purpleAccent,
-                              title: "3. KARAKTER YETENEK (TRAIT) SİSTEMİ",
-                              content: "Ailenin her üyesi oyuna tamamen rastgele yeteneklerle (Örn: Demir Mide, Şifacı, Çevik) başlar. Karakterlerinizin portresine tıklayarak durumlarını görün, yemek/su verin, medkit kullanın veya sohbet ederek morallerini yüksek tutun.",
+                              title: Localization.t('ui_guide_3', context.read<GameState>().currentLanguage),
+                              content: Localization.t('ui_guide_3_desc', context.read<GameState>().currentLanguage),
                             ),
                             _buildGuideSection(
                               imagePath: 'assets/icon_tool.png',
                               color: Colors.orangeAccent,
-                              title: "4. KAYNAK VE ENVANTER YÖNETİMİ",
-                              content: "• Su & Çorba: Temel yaşam kaynağıdır.\n• İlk Yardım Kiti (Medkit): Hastalık ve yaralanmaları anında iyileştirir.\n• Alet Çantası (Tool): Havalandırma gibi sığınak arızalarını tamir etmenizi veya keşiflerdeki kilitli kasaları açmanızı sağlar.\n• Cephane: Gece sığınağa saldıran yağmacıları veya yaratıkları savuşturmak için şarttır.",
+                              title: Localization.t('ui_guide_4', context.read<GameState>().currentLanguage),
+                              content: Localization.t('ui_guide_4_desc', context.read<GameState>().currentLanguage),
                             ),
                             _buildGuideSection(
                               imagePath: 'assets/icon_radio.png',
                               color: Colors.lightBlue,
-                              title: "5. RADYO VE GİZLİ SONLAR",
-                              content: "Kurtuluş için tek yol sığınakta çürümek değil! Günde bir kez radyoyu kullanarak askeri frekansları arayabilir (Sinyal Tara) veya müzik dinleyerek moralleri düzeltebilirsiniz. Askeri tahliye noktalarını bularak veya gizemli 'Ütopya' kolonisine giden yolu açarak ailenizi kurtarın.",
+                              title: Localization.t('ui_guide_5', context.read<GameState>().currentLanguage),
+                              content: Localization.t('ui_guide_5_desc', context.read<GameState>().currentLanguage),
                             ),
                           ],
                         ),
@@ -1655,12 +1656,12 @@ class _BunkerScreenState extends State<BunkerScreen> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: _buildActionButton(
-                      "Anladım, Hayatta Kalmaya Hazırım",
+                      Localization.t('ui_guide_ready', context.read<GameState>().currentLanguage),
                       Icons.check,
                       Colors.white,
                       () {
                         AudioManager().playSFX('ui_click.mp3');
-                        Navigator.pop(dialogContext);
+                        Navigator.pop(context);
                       },
                     ),
                   ),
@@ -1722,7 +1723,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
     showDialog(
       context: context,
       barrierColor: Colors.black.withValues(alpha: 0.4),
-      builder: (BuildContext dialogContext) {
+      builder: (BuildContext context) {
         return StatefulBuilder(
           builder: (context, setState) {
             return Dialog(
@@ -1750,8 +1751,8 @@ class _BunkerScreenState extends State<BunkerScreen> {
                       children: [
                         Image.asset('assets/icon_settings.png', width: 48, height: 48),
                         const SizedBox(height: 8),
-                        const Text(
-                          "AYARLAR",
+                        Text(
+                      Localization.t('ui_settings', context.read<GameState>().currentLanguage),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -1761,7 +1762,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         ),
                         const SizedBox(height: 16),
                         _buildVolumeSliderRow(
-                          title: "Müzik Sesi",
+                          title: Localization.t('ui_music_vol', context.read<GameState>().currentLanguage),
                           value: AudioManager().bgmVolume,
                           onChanged: (val) {
                             setState(() {
@@ -1771,7 +1772,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         ),
                         const SizedBox(height: 8),
                         _buildVolumeSliderRow(
-                          title: "Efekt Sesi",
+                          title: Localization.t('ui_sfx_vol', context.read<GameState>().currentLanguage),
                           value: AudioManager().sfxVolume,
                           onChanged: (val) {
                             setState(() {
@@ -1781,19 +1782,19 @@ class _BunkerScreenState extends State<BunkerScreen> {
                         ),
                         const SizedBox(height: 12),
                         _buildModernActionRow(
-                          title: "Satın Alımları Geri Yükle",
-                          subtitle: "Elit Sürüm lisansını kurtarır.",
+                          title: Localization.t('ui_restore_purchases', context.read<GameState>().currentLanguage),
+                          subtitle: Localization.t('ui_restore_desc', context.read<GameState>().currentLanguage),
                           enabled: true,
                           onTap: () {
                             AudioManager().playSFX('ui_click.mp3');
-                            Navigator.pop(dialogContext);
+                            Navigator.pop(context);
                             _restorePurchases(context, context.read<GameState>());
                           },
                         ),
                         const SizedBox(height: 6),
                         _buildModernActionRow(
-                          title: "Geri Bildirim Gönder",
-                          subtitle: "Bize düşüncelerinizi iletin.",
+                          title: Localization.t('ui_send_feedback', context.read<GameState>().currentLanguage),
+                          subtitle: Localization.t('ui_feedback_desc', context.read<GameState>().currentLanguage),
                           enabled: true,
                           onTap: () async {
                             AudioManager().playSFX('ui_click.mp3');
@@ -1814,7 +1815,7 @@ class _BunkerScreenState extends State<BunkerScreen> {
                           Colors.white,
                           () {
                             AudioManager().playSFX('ui_click.mp3');
-                            Navigator.pop(dialogContext);
+                            Navigator.pop(context);
                           },
                         ),
                       ],
@@ -1870,7 +1871,7 @@ class _DayChangeAnimationState extends State<DayChangeAnimation> with SingleTick
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "GÜN ${widget.day} BİTTİ",
+          Localization.t('ui_day_ended', context.read<GameState>().currentLanguage, {'day': widget.day.toString()}),
           style: const TextStyle(
             color: Colors.white54,
             fontSize: 22,

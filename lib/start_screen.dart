@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'game_state.dart';
 import 'bunker_screen.dart';
 import 'audio_manager.dart';
+import 'localization.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -90,6 +91,7 @@ class _StartScreenState extends State<StartScreen> {
                   ),
                 ),
                 
+                Positioned(bottom: 20, right: 20, child: _buildLanguageToggle(gameState)),
                 SafeArea(
                   child: Center(
                     child: SingleChildScrollView(
@@ -101,7 +103,7 @@ class _StartScreenState extends State<StartScreen> {
                                 const CircularProgressIndicator(color: Colors.lightBlueAccent),
                                 const SizedBox(height: 20),
                                 Text(
-                                  gameState.loadingMessage.isEmpty ? "Lütfen Bekleyin..." : gameState.loadingMessage,
+                                  gameState.loadingMessage.isEmpty ? Localization.t("loading_wait", gameState.currentLanguage) : gameState.loadingMessage,
                                   style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
                                 ),
@@ -121,16 +123,16 @@ class _StartScreenState extends State<StartScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 6),
-                                const Text(
-                                  "Hayatta kalmak için ne kadar ileri gidebilirsin?",
-                                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                                Text(
+                                  Localization.t("start_subtitle", gameState.currentLanguage),
+                                  style: const TextStyle(color: Colors.white70, fontSize: 14),
                                 ),
                                 const SizedBox(height: 25), 
                                 
                                 if (hasSave) ...[
                                   _buildStartButton(
-                                    title: "DEVAM ET",
-                                    subtitle: "Sığınağa geri dön ve kaldığın yerden devam et.",
+                                    title: Localization.t("start_continue", gameState.currentLanguage),
+                                    subtitle: Localization.t("start_continue_desc", gameState.currentLanguage),
                                     imagePath: 'assets/icon_play.png', 
                                     color: Colors.greenAccent,
                                     onTap: continueGame,
@@ -139,8 +141,8 @@ class _StartScreenState extends State<StartScreen> {
                                 ],
                                 
                                 _buildStartButton(
-                                  title: "YENİ OYUN: GERÇEKÇİ OYNANIŞ",
-                                  subtitle: "Tam konumunu haritalandırır.", 
+                                  title: Localization.t("start_new_gps", gameState.currentLanguage),
+                                  subtitle: Localization.t("start_new_gps_desc", gameState.currentLanguage), 
                                   imagePath: 'assets/icon_gps.png', 
                                   color: Colors.lightBlueAccent,
                                   onTap: () => startNewGame(true),
@@ -148,8 +150,8 @@ class _StartScreenState extends State<StartScreen> {
                                 const SizedBox(height: 12),
                                 
                                 _buildStartButton(
-                                  title: "YENİ OYUN: HIZLI OYNANIŞ",
-                                  subtitle: "İzin gerektirmez. Tahmini harita üzerinden ilerler.",
+                                  title: Localization.t("start_new_ip", gameState.currentLanguage),
+                                  subtitle: Localization.t("start_new_ip_desc", gameState.currentLanguage),
                                   imagePath: 'assets/icon_lightning.png', 
                                   color: Colors.amber,
                                   onTap: () => startNewGame(false),
@@ -162,6 +164,47 @@ class _StartScreenState extends State<StartScreen> {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  
+  Widget _buildLanguageToggle(GameState gameState) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        _buildLangBtn('Türkçe', 'tr', gameState),
+        const SizedBox(height: 8),
+        _buildLangBtn('English', 'en', gameState),
+      ],
+    );
+  }
+
+  Widget _buildLangBtn(String label, String code, GameState gameState) {
+    bool isActive = gameState.currentLanguage == code;
+    return GestureDetector(
+      onTap: () {
+        AudioManager().playSFX('ui_click.mp3');
+        gameState.setLanguage(code);
+      },
+      child: Container(
+        width: 100,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          color: isActive ? Colors.white : Colors.black.withOpacity(0.6),
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: isActive ? Colors.white : Colors.white54, width: 1),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: isActive ? Colors.black : Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
           ),
         ),
       ),
